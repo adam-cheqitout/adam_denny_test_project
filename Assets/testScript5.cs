@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class testScript5 : MonoBehaviour {
-    public float parameter1 = 0.1f;
-    public float parameter2 = 0.1f;
-    public float parameter3 = 10;
-    public float parameter4 = -10;
-    private bool parameter5 = true;
+    public float totalExposure = 0.1f;
+    public float changeAmount = 0.1f;
+    public float maxExposure = 10;
+    public float minExposure = -10;
+    private bool increasing = true;
 	// Use this for initialization
 	void Start () {
 		
@@ -15,22 +15,22 @@ public class testScript5 : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if(parameter1 > parameter3)
+        if(totalExposure > maxExposure)
         {
-            parameter5 = false;
+            increasing = false;
         }
-        if (parameter5)
+        if (increasing)
         {
-            parameter1 += parameter2;
-            RenderSettings.skybox.SetFloat("_Exposure", parameter1);
+            totalExposure += changeAmount;
+            RenderSettings.skybox.SetFloat("_Exposure", totalExposure);
         } else
         {
-            parameter1 -= parameter2;
-            RenderSettings.skybox.SetFloat("_Exposure", parameter1);
+            totalExposure -= changeAmount;
+            RenderSettings.skybox.SetFloat("_Exposure", totalExposure);
         }
-        if(parameter1 < parameter4)
+        if(totalExposure < minExposure)
         {
-            parameter5 = true;
+            increasing = true;
         }
 
     }
